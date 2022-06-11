@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import Button from './Components/Button/Button';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <Button onClick={() => {console.log('clicked');}} text="click me" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

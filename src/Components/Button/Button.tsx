@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react'
-import { buttonStyles } from '../Button/Button.module.css'
+import classes from '../Button/Button.module.css'
 
 type Props = {
   onClick: MouseEventHandler,
@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Button = ({ onClick, text }: Props) => (
-  <button onClick={onClick} className={buttonStyles.style}>
+  <button onClick={onClick} className={classes.style}>
     {text}
   </button>
 )
