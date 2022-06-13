@@ -6,23 +6,30 @@ import unlockedImage from '../InputBox/unlocked.png'
 type Props = {
   onClick: (lock: boolean) => void,
   locked: boolean,
+  id: string,
   title: string,
   readonly: boolean
 }
 
-const InputBox = ({ title, readonly, onClick, locked }: Props) => (
+const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
   <div>
     <div className={classes.textboxContainer}>
-      <label htmlFor="cname" className={`${readonly ? classes.active : ""}`}>{title}</label>
+      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>
       <input onFocus={(e) => {
-          var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
-        }} 
+          if(!e.target.readOnly){
+            var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          }
+          console.log('local', e); console.log(e.target.readOnly);
+          }} 
         onBlur={(e) => {
-          console.log(e);
-          var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
-        }} 
-        id="cname" 
+          if(!e.target.readOnly){
+            var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+          }
+          console.log('local', e); console.log(e.target.readOnly);
+          }} 
+        id={id} 
         type="text"
+        name={id} 
         className={classes.cool} 
         readOnly={readonly}
         />

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react'
-import classes from '../Button/Button.module.css'
+import classes from '../Button/Button.module.scss'
 
 type Props = {
   onClick: MouseEventHandler,
