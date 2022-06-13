@@ -14,16 +14,18 @@ type Props = {
 const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
   <div>
     <div className={classes.textboxContainer}>
-      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>
+      <div className={classes.textBoxBorder}></div>
       <input onFocus={(e) => {
           if(!e.target.readOnly){
-            var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+            e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+            e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textBoxActive}`);
           }
           console.log('local', e); console.log(e.target.readOnly);
           }} 
         onBlur={(e) => {
           if(!e.target.readOnly){
-            var parent = e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+            e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+            e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textBoxActive}`);
           }
           console.log('local', e); console.log(e.target.readOnly);
           }} 
@@ -33,6 +35,7 @@ const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
         className={classes.cool} 
         readOnly={readonly}
         />
+      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>      
     </div>
     <div className={classes.buttonContainer}>
       <button onClick={ () => { onClick(locked);}} className={`${classes.button} ${locked ? classes.locked : ""}`}>
