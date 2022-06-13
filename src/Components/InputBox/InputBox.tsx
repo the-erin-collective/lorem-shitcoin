@@ -15,15 +15,22 @@ const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
   <div>
     <div className={classes.textboxContainer}>
       <div className={classes.textBoxBorder}></div>
-      <input onFocus={(e) => {
-          if(!e.target.readOnly){
+      <input onChange={(e) => {
+          if(e.target.value.length == 0){
+            e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+          }else{
+            e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          }
+        }}
+        onFocus={(e) => {
+          if(!e.target.readOnly && e.target.value.length == 0){
             e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
             e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textBoxActive}`);
           }
           console.log('local', e); console.log(e.target.readOnly);
           }} 
         onBlur={(e) => {
-          if(!e.target.readOnly){
+          if(!e.target.readOnly && e.target.value.length == 0){
             e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
             e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textBoxActive}`);
           }
