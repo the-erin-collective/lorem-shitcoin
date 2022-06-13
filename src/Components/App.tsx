@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [coinLocked, setCoinLocked] = useState(false);
-  const [pitchLocked, setpitchLocked] = useState(false);
+  const [pitchLocked, setPitchLocked] = useState(false);
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +15,7 @@ function App() {
           }} 
           locked={coinLocked} />
         <InputBox id='pitch' readonly={true} title='sales pitch' onClick={(currentLocked) => {
-            setpitchLocked(!pitchLocked);
+            setPitchLocked(!pitchLocked);
           }} 
           locked={pitchLocked}  />
         <Button onClick={() => {console.log('clicked');}} text="randomize" />
