@@ -21,7 +21,7 @@ module.exports = {
         loader: "source-map-loader",
       },
       {
-        test: /\.css$/,
+        test: [/.css$|.scss$/],
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -31,7 +31,9 @@ module.exports = {
               publicPath: '../'
             }
           },
-          "css-loader"
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
         ]
       },
       {
@@ -55,7 +57,7 @@ module.exports = {
     new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: "[name].css",
+      //  filename: "[name].css",
         chunkFilename: "[id].css"
       }),
   ],

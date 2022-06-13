@@ -1,22 +1,33 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Button from './Components/Button/Button';
+import InputBox from './Components/InputBox/InputBox';
+
 
 function App() {
+ // let coinLocked: boolean = useSt8(false);
+
   return (
     <div className="App">
       <header className="App-header">
-        <Button onClick={() => {console.log('clicked');}} text="click me" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <InputBox readonly={false} title='coin name' onClick={(currentLocked) => {
+            console.log(currentLocked);
+          //  locked = currentLocked;
+          }} 
+          locked={false} />
+        <InputBox readonly={true} title='sales pitch' onClick={(currentLocked) => {
+            console.log(currentLocked);
+        //    this.locked = !currentLocked;
+          }} 
+          locked={false}  />
+        <Button onClick={() => {console.log('clicked');}} text="randomize" />
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/the-erin-collective/lorem-shitcoin"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          get the code (AGPL3 licenced)
         </a>
       </header>
     </div>
