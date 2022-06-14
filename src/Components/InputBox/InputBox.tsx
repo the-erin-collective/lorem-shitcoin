@@ -9,31 +9,36 @@ type Props = {
   id: string,
   title: string,
   readonly: boolean,
-  isMultiline: boolean
+  isMultiline: boolean,
+  text: string,
+  onChange: (e:React.SyntheticEvent) => void
 }
 
-const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) => (
+const InputBox = ({ id, title, text = '', readonly, onClick, onChange, locked, isMultiline }: Props) => (
   <div className={classes.inputBox}>
     {isMultiline && <div className={classes.textboxContainer}>
       <div className={classes.textBoxBorder}></div>
       <textarea
       onChange={(e) => {
-        if(e.target.value.length == 0){
-          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+        if(!e.currentTarget.readOnly){
+          onChange(e);
+        }
+        if(!e.currentTarget.value || e.currentTarget.value.length == 0){
+          e.currentTarget.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
         }else{
-          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          e.currentTarget.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
         }
       }}
       onFocus={(e) => {
-        if(!e.target.readOnly && e.target.value.length == 0){
+        if(!e.target.readOnly && (!e.target.value || e.target.value.length == 0)){
           e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
-          e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textareActive}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textareaActive}`);
         }
         }} 
       onBlur={(e) => {
-        if(!e.target.readOnly && e.target.value.length == 0){
+        if(!e.target.readOnly && (!e.target.value || e.target.value.length == 0)){
           e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
-          e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textareActive}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textareaActive}`);
         }
         }} 
       id={id} 
@@ -41,8 +46,9 @@ const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) 
       rows={8} 
       className={classes.containerMulti} 
       readOnly={readonly}
+      value={text}
       />
-      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>      
+      <label htmlFor={id} className={`${(readonly || text.length > 0) ? classes.active : ""}`}>{title}</label>      
       </div>
     }
 
@@ -50,20 +56,23 @@ const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) 
       <div className={classes.inputBoxBorder}></div>
       <input type="text"
       onChange={(e) => {
-        if(e.target.value.length == 0){
-          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+        if(!e.currentTarget.readOnly){
+          onChange(e);
+        }
+        if(!e.currentTarget.value || e.currentTarget.value.length == 0){
+          e.currentTarget.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
         }else{
-          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          e.currentTarget.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
         }
       }}
       onFocus={(e) => {
-        if(!e.target.readOnly && e.target.value.length == 0){
+        if(!e.target.readOnly && (!e.target.value || e.target.value.length == 0)){
           e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
           e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textBoxActive}`);
         }
         }} 
       onBlur={(e) => {
-        if(!e.target.readOnly && e.target.value.length == 0){
+        if(!e.target.readOnly && (!e.target.value || e.target.value.length == 0)){
           e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
           e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textBoxActive}`);
         }
@@ -72,8 +81,9 @@ const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) 
       name={id} 
       className={classes.containerSingle} 
       readOnly={readonly}
+      value={text}
       />   
-      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>      
+      <label htmlFor={id} className={`${(readonly || text.length > 0) ? classes.active : ""}`}>{title}</label>      
       </div>
     }
     <div className={classes.buttonContainer}>
