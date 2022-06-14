@@ -33,9 +33,14 @@ function App() {
           }}
           locked={pitchLocked}  />
         <Button onClick={() => {
-            setCoinText('MOONZOOM');
-            setPitchText('when lambo?');
-            console.log('clicked');
+            let coinTextVal = coinText;
+            let pitchTextVal = pitchText;
+            if(!coinLocked){
+              setCoinText('MOONZOOM' + ' ' + new Date().getTime());
+            }
+            if(!pitchLocked){
+              setPitchText('when lambo?' + ' ' + new Date().getTime());
+            }
           }} text="get rich quick!" />
         <div className={classes.pageDescription}>
           generate random crypto sales pitches using the button above, you can "lock" a text box (eg coin name) to stop it from randomizng.
