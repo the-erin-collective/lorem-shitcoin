@@ -23,6 +23,9 @@ function App() {
           }} 
           locked={pitchLocked}  />
         <Button onClick={() => {console.log('clicked');}} text="get rich quick!" />
+        <div className={classes.pageDescription}>
+          generate random crypto sales pitches using the button above, you can "lock" a text box (eg coin name) to stop it from randomizng.
+        </div>
       </header>
     </div>
   );
