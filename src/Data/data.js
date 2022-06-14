@@ -216,7 +216,7 @@ const data = {
         selfHelp: [ 
             'trade while they sleep, learn while they party, save while they spend, live like they dream.',
             'if you don\'t go after what you want, you will never have it.',
-            'if you don\'t ask, the asnwer will always be NO!',
+            'if you don\'t ask, the answer will always be NO!',
             'don\'t call it a dream call it a plan.',
             'if you don\'t find a way to make money while you sleep, you will work till you die.',
             'the only regret you\'ll have is you didn\'t buy more {coin}.',               
