@@ -5,6 +5,7 @@ import InputBox from '../Components/InputBox/InputBox';
 import ForkMe from '../Components/ForkMe/ForkMe';
 import Banner from '../Components/Banner/Banner';
 import React, { useState } from 'react';
+import InnovationService from '../Services/innovation.service';
 
 function App() {
   const [coinLocked, setCoinLocked] = useState(false);
@@ -36,10 +37,14 @@ function App() {
             let coinTextVal = coinText;
             let pitchTextVal = pitchText;
             if(!coinLocked){
-              setCoinText('MOONZOOM' + ' ' + new Date().getTime());
+              let newCoin = InnovationService.getCoin();
+              coinTextVal = '';
+              setCoinText(newCoin + ' ' + new Date().getTime());
             }
             if(!pitchLocked){
-              setPitchText('when lambo?' + ' ' + new Date().getTime());
+              let newPitch = InnovationService.getPitch(coinTextVal);
+              pitchTextVal = '';
+              setPitchText(newPitch + ' ' + new Date().getTime());
             }
           }} text="get rich quick!" />
         <div className={classes.pageDescription}>
