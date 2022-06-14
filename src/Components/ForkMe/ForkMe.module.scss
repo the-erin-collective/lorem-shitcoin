@@ -1,0 +1,73 @@
+@use '../../style.vars.scss' as *;
+
+.githubCorner:hover .octoArm {
+    animation: octocatWave 560ms ease-in-out
+}
+
+svg{
+    fill:#FD6C6C; 
+    color:#fff; 
+    position: absolute; 
+    top: 0; 
+    border: 0; 
+    right: 0;
+}
+
+.octoArm{
+    transform-origin: 130px 106px;
+}
+
+@keyframes octocatWave {
+
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .githubCorner:hover .octoArm {
+        animation: none
+    }
+
+    .githubCorner .octoArm {
+        animation: octocatWave 560ms ease-in-out
+    }
+}
+
+.ribbon {
+    position: absolute;
+    right: 0px; 
+    top: 0px;
+    z-index: 1;
+    overflow: hidden;
+    width: 100px; 
+    height: 100px;
+    text-align: right;
+    opacity: 0.9;
+  }
+
+  .ribbon span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FD6C6C;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 40px; right: 0px;
+  }

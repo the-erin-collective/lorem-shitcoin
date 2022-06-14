@@ -8,42 +8,75 @@ type Props = {
   locked: boolean,
   id: string,
   title: string,
-  readonly: boolean
+  readonly: boolean,
+  isMultiline: boolean
 }
 
-const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
+const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) => (
   <div>
-    <div className={classes.textboxContainer}>
+   
+    {isMultiline && <div className={classes.textboxContainer}>
       <div className={classes.textBoxBorder}></div>
-      <input onChange={(e) => {
-          if(e.target.value.length == 0){
-            e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
-          }else{
-            e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
-          }
-        }}
-        onFocus={(e) => {
-          if(!e.target.readOnly && e.target.value.length == 0){
-            e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
-            e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textBoxActive}`);
-          }
-          console.log('local', e); console.log(e.target.readOnly);
-          }} 
-        onBlur={(e) => {
-          if(!e.target.readOnly && e.target.value.length == 0){
-            e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
-            e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textBoxActive}`);
-          }
-          console.log('local', e); console.log(e.target.readOnly);
-          }} 
-        id={id} 
-        type="text"
-        name={id} 
-        className={classes.cool} 
-        readOnly={readonly}
-        />
+      <textarea
+      onChange={(e) => {
+        if(e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+        }else{
+          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+        }
+      }}
+      onFocus={(e) => {
+        if(!e.target.readOnly && e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textareActive}`);
+        }
+        }} 
+      onBlur={(e) => {
+        if(!e.target.readOnly && e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textareActive}`);
+        }
+        }} 
+      id={id} 
+      name={id}
+      rows={8} 
+      className={classes.containerMulti} 
+      readOnly={readonly}
+      />
       <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>      
-    </div>
+      </div>
+    }
+
+    {!isMultiline && <div className={classes.textboxContainer}>
+      <div className={classes.inputBoxBorder}></div>
+      <input type="text"
+      onChange={(e) => {
+        if(e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+        }else{
+          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+        }
+      }}
+      onFocus={(e) => {
+        if(!e.target.readOnly && e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.add(`${classes.active}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.add(`${classes.textBoxActive}`);
+        }
+        }} 
+      onBlur={(e) => {
+        if(!e.target.readOnly && e.target.value.length == 0){
+          e.target.parentElement.getElementsByTagName('label')[0].classList.remove(`${classes.active}`);
+          e.target.parentElement.getElementsByTagName('div')[0].classList.remove(`${classes.textBoxActive}`);
+        }
+        }} 
+      id={id} 
+      name={id} 
+      className={classes.containerSingle} 
+      readOnly={readonly}
+      />   
+      <label htmlFor={id} className={`${readonly ? classes.active : ""}`}>{title}</label>      
+      </div>
+    }
     <div className={classes.buttonContainer}>
       <button onClick={ () => { onClick(locked);}} className={`${classes.button} ${locked ? classes.locked : ""}`}>
         {locked === true &&
@@ -54,7 +87,7 @@ const InputBox = ({ id, title, readonly, onClick, locked }: Props) => (
         }
       </button>
     </div>
-  </div>
+</div>
 )
 
 export default InputBox
