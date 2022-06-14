@@ -12,6 +12,8 @@ function App() {
   const [pitchLocked, setPitchLocked] = useState(false);
   const [coinText, setCoinText] = useState('');
   const [pitchText, setPitchText] = useState('');
+  let coinHolder = '';
+
   return (
     <div className={classes.app}>
       <header className={classes.appHeader}>
@@ -34,18 +36,15 @@ function App() {
           }}
           locked={pitchLocked}  />
         <Button onClick={() => {
-            let coinTextVal = coinText;
-            let pitchTextVal = pitchText;
             if(!coinLocked){
-              let newCoin = InnovationService.getCoin();
-              coinTextVal = newCoin;
-              setCoinText(coinTextVal + ' ' + new Date().getTime());
+              coinHolder = InnovationService.getCoin();
+              setCoinText(coinHolder);
+            }else{
+              let el = ( document.getElementById('coin') as HTMLInputElement);
+              coinHolder = el.value;
             }
-            if(!pitchLocked){
-              let newPitch = InnovationService.getPitch(coinTextVal);
-              pitchTextVal = newPitch;
-              setPitchText(pitchTextVal + ' ' + coinTextVal + ' ' + new Date().getTime());
-            }
+            let newPitch = InnovationService.getPitch(pitchLocked, coinHolder);
+            setPitchText(newPitch);
           }} text="get rich quick!" />
         <div className={classes.pageDescription}>
           generate random crypto sales pitches using the button above, you can "lock" a text box (eg coin name) to stop it from randomizng.
