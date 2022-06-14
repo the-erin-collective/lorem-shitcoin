@@ -20,7 +20,7 @@ function App() {
             setPitchLocked(!pitchLocked);
           }} 
           locked={pitchLocked}  />
-        <Button onClick={() => {console.log('clicked');}} text="randomize" />
+        <Button onClick={() => {console.log('clicked');}} text="get rich quick!" />
       </header>
     </div>
   );
