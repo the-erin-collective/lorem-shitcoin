@@ -4,7 +4,7 @@ import lockedImage from '../InputBox/locked.png'
 import unlockedImage from '../InputBox/unlocked.png'
 
 type Props = {
-  onClick: (lock: boolean) => void,
+  onClick: () => void,
   locked: boolean,
   id: string,
   title: string,
@@ -13,8 +13,7 @@ type Props = {
 }
 
 const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) => (
-  <div>
-   
+  <div className={classes.inputBox}>
     {isMultiline && <div className={classes.textboxContainer}>
       <div className={classes.textBoxBorder}></div>
       <textarea
@@ -78,7 +77,7 @@ const InputBox = ({ id, title, readonly, onClick, locked, isMultiline }: Props) 
       </div>
     }
     <div className={classes.buttonContainer}>
-      <button onClick={ () => { onClick(locked);}} className={`${classes.button} ${locked ? classes.locked : ""}`}>
+      <button onClick={ () => { onClick();}} className={`${classes.button} ${locked ? classes.locked : ""}`}>
         {locked === true &&
           <img src={lockedImage} alt="locked" />
         }

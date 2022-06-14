@@ -1,11 +1,11 @@
 @use '../style.vars.scss' as *;
 
-.App {
+.app {
   text-align: center;
   width: 540px;
 }
 
-.App-header {
+.appHeader {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
