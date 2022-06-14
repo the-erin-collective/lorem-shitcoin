@@ -38,13 +38,13 @@ function App() {
             let pitchTextVal = pitchText;
             if(!coinLocked){
               let newCoin = InnovationService.getCoin();
-              coinTextVal = '';
-              setCoinText(newCoin + ' ' + new Date().getTime());
+              coinTextVal = newCoin;
+              setCoinText(coinTextVal + ' ' + new Date().getTime());
             }
             if(!pitchLocked){
               let newPitch = InnovationService.getPitch(coinTextVal);
-              pitchTextVal = '';
-              setPitchText(newPitch + ' ' + new Date().getTime());
+              pitchTextVal = newPitch;
+              setPitchText(pitchTextVal + ' ' + coinTextVal + ' ' + new Date().getTime());
             }
           }} text="get rich quick!" />
         <div className={classes.pageDescription}>
