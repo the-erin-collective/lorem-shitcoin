@@ -3,6 +3,7 @@ import classes from './App.module.scss';
 import Button from '../Components/Button/Button';
 import InputBox from '../Components/InputBox/InputBox';
 import ForkMe from '../Components/ForkMe/ForkMe';
+import Banner from '../Components/Banner/Banner';
 import React, { useState } from 'react';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className={classes.app}>
       <header className={classes.appHeader}>
+        <Banner name="banner" text="lorem-shitcoin" />
         <ForkMe codeUrl='https://github.com/the-erin-collective/lorem-shitcoin'/>
         <InputBox id='coin' readonly={false} title='coin name' isMultiline={false} onClick={() => {
             setCoinLocked(!coinLocked);
