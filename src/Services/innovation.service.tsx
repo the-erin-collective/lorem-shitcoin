@@ -53,10 +53,11 @@ const generateCoinName = ():string => {
     let result = '';
     found.forEach((tag:string) => {
         result+= getRandomElementFromList(tag);
-        if(Math.random() < 0.25){
+        if(Math.random() < 0.5){
             result += ' ';
         }
     }); 
+    result = result.trim();
     return result;
 };
 

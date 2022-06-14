@@ -76,12 +76,14 @@ label {
 }
   
 .active {
-    top: -25px;
+    top: -32px;
     font-size: 20px;
     background: $background-color;
     left: 12px;
     opacity: 1;
     color: $text-color;
+    padding-top: 7px;
+    height: 15px;
 }
   
 .containerSingle {
